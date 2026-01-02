@@ -9,7 +9,7 @@
       <el-dropdown @command="handleCommand">
         <span>{{user.username}}<i class="el-icon-caret-bottom el-icon--right"></i></span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="logout">Logout</el-dropdown-item>
+          <el-dropdown-item command="logout">{{$t('m.Logout')}}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -18,7 +18,7 @@
         <router-view></router-view>
       </transition>
       <div class="footer">
-        Build Version: {{ version }}
+        {{$t('m.Build_Version')}}: {{ version }}
       </div>
     </div>
 

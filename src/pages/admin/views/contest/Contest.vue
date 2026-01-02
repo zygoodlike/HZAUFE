@@ -38,8 +38,8 @@
           </el-col>
           <el-col :span="8">
             <el-form-item :label="$t('m.Contest_Rule_Type')">
-              <el-radio class="radio" v-model="contest.rule_type" label="ACM" :disabled="disableRuleType">ACM</el-radio>
-              <el-radio class="radio" v-model="contest.rule_type" label="OI" :disabled="disableRuleType">OI</el-radio>
+              <el-radio class="radio" v-model="contest.rule_type" label="ACM" :disabled="disableRuleType">{{$t('m.ACM')}}</el-radio>
+              <el-radio class="radio" v-model="contest.rule_type" label="OI" :disabled="disableRuleType">{{$t('m.OI')}}</el-radio>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -93,7 +93,7 @@
     },
     data () {
       return {
-        title: 'Create Contest',
+        title: this.$t('m.Create_Contest'),
         disableRuleType: false,
         contest: {
           title: '',
@@ -138,7 +138,7 @@
     },
     mounted () {
       if (this.$route.name === 'edit-contest') {
-        this.title = 'Edit Contest'
+        this.title = this.$t('m.Edit_Contest')
         this.disableRuleType = true
         api.getContest(this.$route.params.contestId).then(res => {
           let data = res.data.data

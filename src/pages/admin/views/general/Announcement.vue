@@ -4,41 +4,41 @@
       <div class="list">
         <el-table
           v-loading="loading"
-          element-loading-text="loading"
+          :element-loading-text="$t('m.loading')"
           ref="table"
           :data="announcementList"
           style="width: 100%">
           <el-table-column
             width="100"
             prop="id"
-            label="ID">
+            :label="$t('m.ID')">
           </el-table-column>
           <el-table-column
             prop="title"
-            label="Title">
+            :label="$t('m.Title')">
           </el-table-column>
           <el-table-column
             prop="create_time"
-            label="CreateTime">
+            :label="$t('m.Create_Time')">
             <template slot-scope="scope">
               {{ scope.row.create_time | localtime }}
             </template>
           </el-table-column>
           <el-table-column
             prop="last_update_time"
-            label="LastUpdateTime">
+            :label="$t('m.Last_Update_Time')">
             <template slot-scope="scope">
               {{scope.row.last_update_time | localtime }}
             </template>
           </el-table-column>
           <el-table-column
             prop="created_by.username"
-            label="Author">
+            :label="$t('m.Author')">
           </el-table-column>
           <el-table-column
             width="100"
             prop="visible"
-            label="Visible">
+            :label="$t('m.Visible')">
             <template slot-scope="scope">
               <el-switch v-model="scope.row.visible"
                          active-text=""
@@ -49,16 +49,16 @@
           </el-table-column>
           <el-table-column
             fixed="right"
-            label="Option"
+            :label="$t('m.Operation')"
             width="200">
             <div slot-scope="scope">
-              <icon-btn name="Edit" icon="edit" @click.native="openAnnouncementDialog(scope.row.id)"></icon-btn>
-              <icon-btn name="Delete" icon="trash" @click.native="deleteAnnouncement(scope.row.id)"></icon-btn>
+              <icon-btn :name="$t('m.Edit')" icon="edit" @click.native="openAnnouncementDialog(scope.row.id)"></icon-btn>
+            <icon-btn :name="$t('m.Delete')" icon="trash" @click.native="deleteAnnouncement(scope.row.id)"></icon-btn>
             </div>
           </el-table-column>
         </el-table>
         <div class="panel-options">
-          <el-button type="primary" size="small" @click="openAnnouncementDialog(null)" icon="el-icon-plus">Create</el-button>
+          <el-button type="primary" size="small" @click="openAnnouncementDialog(null)" icon="el-icon-plus">{{$t('m.Create')}}</el-button>
           <el-pagination
             v-if="!contestID"
             class="page"
@@ -130,7 +130,7 @@
           content: ''
         },
         // 对话框标题
-        announcementDialogTitle: 'Edit Announcement',
+        announcementDialogTitle: '',
         // 是否显示loading
         loading: true,
         // 当前页码
@@ -212,9 +212,9 @@
       },
       // 删除公告
       deleteAnnouncement (announcementId) {
-        this.$confirm('Are you sure you want to delete this announcement?', 'Warning', {
-          confirmButtonText: 'Delete',
-          cancelButtonText: 'Cancel',
+        this.$confirm(this.$t('m.Sure_to_delete_announcement'), this.$t('m.Warning'), {
+          confirmButtonText: this.$t('m.Delete'),
+          cancelButtonText: this.$t('m.Cancel'),
           type: 'warning'
         }).then(() => {
           // then 为确定
@@ -233,7 +233,7 @@
         this.showEditAnnouncementDialog = true
         if (id !== null) {
           this.currentAnnouncementId = id
-          this.announcementDialogTitle = 'Edit Announcement'
+          this.announcementDialogTitle = this.$t('m.Edit_Announcement')
           this.announcementList.find(item => {
             if (item.id === this.currentAnnouncementId) {
               this.announcement.title = item.title
@@ -243,7 +243,7 @@
             }
           })
         } else {
-          this.announcementDialogTitle = 'Create Announcement'
+          this.announcementDialogTitle = this.$t('m.Create_Announcement')
           this.announcement.title = ''
           this.announcement.visible = true
           this.announcement.content = ''

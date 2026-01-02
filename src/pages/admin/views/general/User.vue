@@ -6,53 +6,53 @@
           <el-col :span="8">
             <el-button v-show="selectedUsers.length"
                        type="warning" icon="el-icon-fa-trash"
-                       @click="deleteUsers(selectedUserIDs)">Delete
+                       @click="deleteUsers(selectedUserIDs)">{{$t('m.Delete')}}
             </el-button>
           </el-col>
           <el-col :span="selectedUsers.length ? 16: 24">
-            <el-input v-model="keyword" prefix-icon="el-icon-search" placeholder="Keywords"></el-input>
+            <el-input v-model="keyword" prefix-icon="el-icon-search" :placeholder="$t('m.Keywords')"></el-input>
           </el-col>
         </el-row>
       </div>
       <el-table
         v-loading="loadingTable"
-        element-loading-text="loading"
+        :element-loading-text="$t('m.loading')"
         @selection-change="handleSelectionChange"
         ref="table"
         :data="userList"
         style="width: 100%">
         <el-table-column type="selection" width="55"></el-table-column>
 
-        <el-table-column prop="id" label="ID"></el-table-column>
+        <el-table-column prop="id" :label="$t('m.ID')"></el-table-column>
 
-        <el-table-column prop="username" label="Username"></el-table-column>
+        <el-table-column prop="username" :label="$t('m.Username')"></el-table-column>
 
-        <el-table-column prop="create_time" label="Create Time">
+        <el-table-column prop="create_time" :label="$t('m.Create_Time')">
           <template slot-scope="scope">
             {{scope.row.create_time | localtime }}
           </template>
         </el-table-column>
 
-        <el-table-column prop="last_login" label="Last Login">
+        <el-table-column prop="last_login" :label="$t('m.Last_Login')">
           <template slot-scope="scope">
             {{scope.row.last_login | localtime }}
           </template>
         </el-table-column>
 
-        <el-table-column prop="real_name" label="Real Name"></el-table-column>
+        <el-table-column prop="real_name" :label="$t('m.Real_Name')"></el-table-column>
 
-        <el-table-column prop="email" label="Email"></el-table-column>
+        <el-table-column prop="email" :label="$t('m.Email')"></el-table-column>
 
-        <el-table-column prop="admin_type" label="User Type">
+        <el-table-column prop="admin_type" :label="$t('m.User_Type')">
           <template slot-scope="scope">
-            {{ scope.row.admin_type }}
+            {{ $t('m.' + scope.row.admin_type) }}
           </template>
         </el-table-column>
 
-        <el-table-column fixed="right" label="Option" width="200">
+        <el-table-column fixed="right" :label="$t('m.Option')" width="200">
           <template slot-scope="{row}">
-            <icon-btn name="Edit" icon="edit" @click.native="openUserDialog(row.id)"></icon-btn>
-            <icon-btn name="Delete" icon="trash" @click.native="deleteUsers([row.id])"></icon-btn>
+            <icon-btn :name="$t('m.Edit')" icon="edit" @click.native="openUserDialog(row.id)"></icon-btn>
+            <icon-btn :name="$t('m.Delete')" icon="trash" @click.native="deleteUsers([row.id])"></icon-btn>
           </template>
         </el-table-column>
       </el-table>
@@ -70,36 +70,36 @@
     <Panel>
       <span slot="title">{{$t('m.Import_User')}}
         <el-popover placement="right" trigger="hover">
-          <p>Only support csv file without headers, check the <a
-            href="http://docs.onlinejudge.me/#/onlinejudge/guide/import_users">link</a> for details</p>
-          <i slot="reference" class="el-icon-fa-question-circle import-user-icon"></i>
-        </el-popover>
+            <p>{{$t('m.Only_support_csv')}} <a
+              href="http://docs.onlinejudge.me/#/onlinejudge/guide/import_users">{{$t('m.link')}}</a> {{$t('m.for_details')}}</p>
+            <i slot="reference" class="el-icon-fa-question-circle import-user-icon"></i>
+          </el-popover>
       </span>
       <el-upload v-if="!uploadUsers.length"
                  action=""
                  :show-file-list="false"
                  accept=".csv"
                  :before-upload="handleUsersCSV">
-        <el-button size="small" icon="el-icon-fa-upload" type="primary">Choose File</el-button>
+        <el-button size="small" icon="el-icon-fa-upload" type="primary">{{$t('m.Choose_File')}}</el-button>
       </el-upload>
       <template v-else>
         <el-table :data="uploadUsersPage">
-          <el-table-column label="Username">
+          <el-table-column :label="$t('m.Username')">
             <template slot-scope="{row}">
               {{row[0]}}
             </template>
           </el-table-column>
-          <el-table-column label="Password">
+          <el-table-column :label="$t('m.Password')">
             <template slot-scope="{row}">
               {{row[1]}}
             </template>
           </el-table-column>
-          <el-table-column label="Email">
+          <el-table-column :label="$t('m.Email')">
             <template slot-scope="{row}">
               {{row[2]}}
             </template>
           </el-table-column>
-          <el-table-column label="RealName">
+          <el-table-column :label="$t('m.Real_Name')">
             <template slot-scope="{row}">
               {{row[3]}}
             </template>
@@ -108,11 +108,11 @@
         <div class="panel-options">
           <el-button type="primary" size="small"
                      icon="el-icon-fa-upload"
-                     @click="handleUsersUpload">Import All
+                     @click="handleUsersUpload">{{$t('m.Import_All')}}
           </el-button>
           <el-button type="warning" size="small"
                      icon="el-icon-fa-undo"
-                     @click="handleResetData">Reset Data
+                     @click="handleResetData">{{$t('m.Reset_Data')}}
           </el-button>
           <el-pagination
             class="page"
@@ -129,39 +129,39 @@
       <el-form :model="formGenerateUser" ref="formGenerateUser">
         <el-row type="flex" justify="space-between">
           <el-col :span="4">
-            <el-form-item label="Prefix" prop="prefix">
-              <el-input v-model="formGenerateUser.prefix" placeholder="Prefix"></el-input>
+            <el-form-item :label="$t('m.Prefix')" prop="prefix">
+              <el-input v-model="formGenerateUser.prefix" :placeholder="$t('m.Prefix')"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="4">
-            <el-form-item label="Suffix" prop="suffix">
-              <el-input v-model="formGenerateUser.suffix" placeholder="Suffix"></el-input>
+            <el-form-item :label="$t('m.Suffix')" prop="suffix">
+              <el-input v-model="formGenerateUser.suffix" :placeholder="$t('m.Suffix')"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="4">
-            <el-form-item label="Start Number" prop="number_from" required>
+            <el-form-item :label="$t('m.Start_Number')" prop="number_from" required>
               <el-input-number v-model="formGenerateUser.number_from" style="width: 100%"></el-input-number>
             </el-form-item>
           </el-col>
           <el-col :span="4">
-            <el-form-item label="End Number" prop="number_to" required>
+            <el-form-item :label="$t('m.End_Number')" prop="number_to" required>
               <el-input-number v-model="formGenerateUser.number_to" style="width: 100%"></el-input-number>
             </el-form-item>
           </el-col>
           <el-col :span="4">
-            <el-form-item label="Password Length" prop="password_length" required>
+            <el-form-item :label="$t('m.Password_Length')" prop="password_length" required>
               <el-input v-model="formGenerateUser.password_length"
-                        placeholder="Password Length"></el-input>
+                        :placeholder="$t('m.Password_Length')"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
 
         <el-form-item>
-          <el-button type="primary" @click="generateUser" icon="el-icon-fa-users" :loading="loadingGenerate">Generate & Export
+          <el-button type="primary" @click="generateUser" icon="el-icon-fa-users" :loading="loadingGenerate">{{$t('m.Generate_Export')}}
           </el-button>
           <span class="userPreview" v-if="formGenerateUser.number_from && formGenerateUser.number_to &&
                                           formGenerateUser.number_from <= formGenerateUser.number_to">
-            The usernames will be {{formGenerateUser.prefix + formGenerateUser.number_from + formGenerateUser.suffix}},
+            {{$t('m.Usernames_Will_Be')}} {{formGenerateUser.prefix + formGenerateUser.number_from + formGenerateUser.suffix}},
             <span v-if="formGenerateUser.number_from + 1 < formGenerateUser.number_to">
               {{formGenerateUser.prefix + (formGenerateUser.number_from + 1) + formGenerateUser.suffix + '...'}}
             </span>
@@ -199,18 +199,18 @@
           <el-col :span="12">
             <el-form-item :label="$t('m.User_Type')">
               <el-select v-model="user.admin_type">
-                <el-option label="Regular User" value="Regular User"></el-option>
-                <el-option label="Admin" value="Admin"></el-option>
-                <el-option label="Super Admin" value="Super Admin"></el-option>
+                <el-option :label="$t('m.Regular_User')" value="Regular User"></el-option>
+                <el-option :label="$t('m.Admin')" value="Admin"></el-option>
+                <el-option :label="$t('m.Super_Admin')" value="Super Admin"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('m.Problem_Permission')">
               <el-select v-model="user.problem_permission" :disabled="user.admin_type!=='Admin'">
-                <el-option label="None" value="None"></el-option>
-                <el-option label="Own" value="Own"></el-option>
-                <el-option label="All" value="All"></el-option>
+                <el-option :label="$t('m.None')" value="None"></el-option>
+                <el-option :label="$t('m.Own')" value="Own"></el-option>
+                <el-option :label="$t('m.All')" value="All"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
@@ -225,7 +225,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="Open Api">
+            <el-form-item :label="$t('m.Open_Api')">
               <el-switch
                 v-model="user.open_api"
                 active-color="#13ce66"
@@ -243,7 +243,7 @@
         </el-row>
       </el-form>
       <span slot="footer" class="dialog-footer">
-        <cancel @click.native="showUserDialog = false">Cancel</cancel>
+        <cancel @click.native="showUserDialog = false">{{$t('m.Cancel')}}</cancel>
         <save @click.native="saveUser()"></save>
       </span>
     </el-dialog>
@@ -329,7 +329,7 @@
         })
       },
       deleteUsers (ids) {
-        this.$confirm('Sure to delete the user? The associated resources created by this user will be deleted as well, like problem, contest, announcement, etc.', 'confirm', {
+        this.$confirm(this.$t('m.Sure_to_delete'), this.$t('m.confirm'), {
           type: 'warning'
         }).then(() => {
           api.deleteUsers(ids.join(',')).then(res => {
@@ -346,7 +346,7 @@
       generateUser () {
         this.$refs['formGenerateUser'].validate((valid) => {
           if (!valid) {
-            this.$error('Please validate the error fields')
+            this.$error(this.$t('m.Please_validate'))
             return
           }
           this.loadingGenerate = true
@@ -355,7 +355,7 @@
             this.loadingGenerate = false
             let url = '/admin/generate_user?file_id=' + res.data.data.file_id
             utils.downloadFile(url).then(() => {
-              this.$alert('All users created successfully, the users sheets have downloaded to your disk.', 'Notice')
+              this.$alert(this.$t('m.All_users_created'), this.$t('m.Notice'))
             })
             this.getUserList(1)
           }).catch(() => {
@@ -371,7 +371,7 @@
             })
             let delta = results.data.length - data.length
             if (delta > 0) {
-              this.$warning(delta + ' users have been filtered due to empty value')
+              this.$warning(delta + this.$t('m.users_filtered'))
             }
             this.uploadUsersCurrentPage = 1
             this.uploadUsers = data

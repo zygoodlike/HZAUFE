@@ -114,9 +114,9 @@
         </el-row>
         <div>
           <el-form-item v-for="(sample, index) in problem.samples" :key="'sample'+index">
-            <Accordion :title="'Sample' + (index + 1)">
+            <Accordion :title="$t('m.Sample') + (index + 1)">
               <el-button type="warning" size="small" icon="el-icon-delete" slot="header" @click="deleteSample(index)">
-                Delete
+                {{$t('m.Delete')}}
               </el-button>
               <el-row :gutter="20">
                 <el-col :span="12">
@@ -189,8 +189,8 @@
           <el-col :span="4">
             <el-form-item :label="$t('m.Type')">
               <el-radio-group v-model="problem.rule_type" :disabled="disableRuleType">
-                <el-radio label="ACM">ACM</el-radio>
-                <el-radio label="OI">OI</el-radio>
+                <el-radio label="ACM">{{$t('m.ACM')}}</el-radio>
+              <el-radio label="OI">{{$t('m.OI')}}</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -203,7 +203,7 @@
                 :show-file-list="true"
                 :on-success="uploadSucceeded"
                 :on-error="uploadFailed">
-                <el-button size="small" type="primary" icon="el-icon-fa-upload">Choose File</el-button>
+                <el-button size="small" type="primary" icon="el-icon-fa-upload">{{$t('m.Choose_File')}}</el-button>
               </el-upload>
             </el-form-item>
           </el-col>
@@ -211,8 +211,8 @@
           <el-col :span="6">
             <el-form-item :label="$t('m.IOMode')">
               <el-radio-group v-model="problem.io_mode.io_mode">
-                <el-radio label="Standard IO">Standard IO</el-radio>
-                <el-radio label="File IO">File IO</el-radio>
+                <el-radio label="Standard IO">{{$t('m.Standard_IO')}}</el-radio>
+                <el-radio label="File IO">{{$t('m.File_IO')}}</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -259,7 +259,7 @@
         <el-form-item :label="$t('m.Source')">
           <el-input :placeholder="$t('m.Source')" v-model="problem.source"></el-input>
         </el-form-item>
-        <save @click.native="submit()">Save</save>
+        <save @click.native="submit()">{{$t('m.Save')}}</save>
       </el-form>
     </Panel>
   </div>
@@ -281,10 +281,10 @@
     data () {
       return {
         rules: {
-          _id: {required: true, message: 'Display ID is required', trigger: 'blur'},
-          title: {required: true, message: 'Title is required', trigger: 'blur'},
-          input_description: {required: true, message: 'Input Description is required', trigger: 'blur'},
-          output_description: {required: true, message: 'Output Description is required', trigger: 'blur'}
+          _id: {required: true, message: this.$t('m.Display_ID_is_required'), trigger: 'blur'},
+          title: {required: true, message: this.$t('m.Title_is_required'), trigger: 'blur'},
+          input_description: {required: true, message: this.$t('m.Input_Description_is_required'), trigger: 'blur'},
+          output_description: {required: true, message: this.$t('m.Output_Description_is_required'), trigger: 'blur'}
         },
         loadingCompile: false,
         mode: '',
@@ -418,9 +418,9 @@
     methods: {
       switchSpj () {
         if (this.testCaseUploaded) {
-          this.$confirm('If you change problem judge method, you need to re-upload test cases', 'Warning', {
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'Cancel',
+          this.$confirm(this.$t('m.If_you_change_problem_judge_method'), this.$t('m.Warning'), {
+            confirmButtonText: this.$t('m.Yes'),
+            cancelButtonText: this.$t('m.Cancel'),
             type: 'warning'
           }).then(() => {
             this.problem.spj = !this.problem.spj
@@ -480,7 +480,7 @@
         this.problem.test_case_id = response.data.id
       },
       uploadFailed () {
-        this.$error('Upload failed')
+        this.$error(this.$t('m.Upload_failed'))
       },
       compileSPJ () {
         let data = {
@@ -498,7 +498,7 @@
           this.problem.spj_compile_ok = false
           const h = this.$createElement
           this.$msgbox({
-            title: 'Compile Error',
+            title: this.$t('m.Compile_Error'),
             type: 'error',
             message: h('pre', err.data.data),
             showCancelButton: false,
@@ -509,26 +509,26 @@
       },
       submit () {
         if (!this.problem.samples.length) {
-          this.$error('Sample is required')
+          this.$error(this.$t('m.Sample_is_required'))
           return
         }
         for (let sample of this.problem.samples) {
           if (!sample.input || !sample.output) {
-            this.$error('Sample input and output is required')
+            this.$error(this.$t('m.Sample_input_and_output_is_required'))
             return
           }
         }
         if (!this.problem.tags.length) {
-          this.error.tags = 'Please add at least one tag'
+          this.error.tags = this.$t('m.Please_add_at_least_one_tag')
           this.$error(this.error.tags)
           return
         }
         if (this.problem.spj) {
           if (!this.problem.spj_code) {
-            this.error.spj = 'Spj code is required'
+            this.error.spj = this.$t('m.Spj_code_is_required')
             this.$error(this.error.spj)
           } else if (!this.problem.spj_compile_ok) {
-            this.error.spj = 'SPJ code has not been successfully compiled'
+            this.error.spj = this.$t('m.SPJ_code_has_not_been_successfully_compiled')
           }
           if (this.error.spj) {
             this.$error(this.error.spj)
@@ -536,12 +536,12 @@
           }
         }
         if (!this.problem.languages.length) {
-          this.error.languages = 'Please choose at least one language for problem'
+          this.error.languages = this.$t('m.Please_choose_at_least_one_language_for_problem')
           this.$error(this.error.languages)
           return
         }
         if (!this.testCaseUploaded) {
-          this.error.testCase = 'Test case is not uploaded yet'
+          this.error.testCase = this.$t('m.Test_case_is_not_uploaded_yet')
           this.$error(this.error.testCase)
           return
         }
@@ -549,11 +549,11 @@
           for (let item of this.problem.test_case_score) {
             try {
               if (parseInt(item.score) <= 0) {
-                this.$error('Invalid test case score')
+                this.$error(this.$t('m.Invalid_test_case_score'))
                 return
               }
             } catch (e) {
-              this.$error('Test case score must be an integer')
+              this.$error(this.$t('m.Test_case_score_must_be_an_integer'))
               return
             }
           }
