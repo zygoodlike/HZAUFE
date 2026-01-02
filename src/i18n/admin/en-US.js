@@ -96,7 +96,8 @@ export const m = {
   Low: 'Low',
   Tag: 'Tag',
   New_Tag: 'New Tag',
-   // ProblemList.vue
+  Preview: 'Preview',
+  // ProblemList.vue
   Contest_Problem_List: 'Contest Problem List',
   // Contest.vue
   ContestTitle: 'Title',
