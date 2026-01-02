@@ -21,9 +21,9 @@
               <div v-html="contest.description" class="markdown-body"></div>
               <div v-if="passwordFormVisible" class="contest-password">
                 <Input v-model="contestPassword" type="password"
-                       placeholder="竞赛密码" class="contest-password-input"
+                       placeholder="contest password" class="contest-password-input"
                        @on-enter="checkPassword"/>
-                <Button type="info" @click="checkPassword">确认</Button>
+                <Button type="info" @click="checkPassword">Enter</Button>
               </div>
             </Panel>
             <Table :columns="columns" :data="contest_table" disabled-hover style="margin-bottom: 40px;"></Table>
@@ -148,12 +148,12 @@
       },
       checkPassword () {
         if (this.contestPassword === '') {
-          this.$error('密码不能为空')
+          this.$error('Password can\'t be empty')
           return
         }
         this.btnLoading = true
         api.checkContestPassword(this.contestID, this.contestPassword).then((res) => {
-          this.$success('成功')
+          this.$success('Succeeded')
           this.$store.commit(types.CONTEST_ACCESS, {access: true})
           this.btnLoading = false
         }, (res) => {

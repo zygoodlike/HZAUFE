@@ -11,7 +11,7 @@
              :data="problems"
              :columns="OITableColumns"
              @on-row-click="goContestProblem"
-             :no-data-text="$t('m.No_Problems')"></Table>
+             no-data-text="$t('m.No_Problems')"></Table>
     </Panel>
   </div>
 </template>

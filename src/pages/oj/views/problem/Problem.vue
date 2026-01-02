@@ -84,7 +84,7 @@
           <Col :span="12">
             <template v-if="captchaRequired">
               <div class="captcha-container">
-                <Tooltip v-if="captchaRequired" content="点击刷新" placement="top">
+                <Tooltip v-if="captchaRequired" content="Click to refresh" placement="top">
                   <img :src="captchaSrc" @click="getCaptchaSrc"/>
                 </Tooltip>
                 <Input v-model="captchaCode" class="captcha-code"/>
@@ -180,7 +180,7 @@
         <div slot="title">
           <Icon type="ios-analytics"></Icon>
           <span class="card-title">{{$t('m.Statistic')}}</span>
-          <Button type="ghost" size="small" id="detail" @click="graphVisible = !graphVisible">详情</Button>
+          <Button type="ghost" size="small" id="detail" @click="graphVisible = !graphVisible">Details</Button>
         </div>
         <div class="echarts">
           <ECharts :options="pie"></ECharts>
@@ -463,10 +463,10 @@
         }
       },
       onCopy (event) {
-        this.$success('复制成功')
+        this.$success('Code copied')
       },
       onCopyError (e) {
-        this.$error('复制失败')
+        this.$error('Failed to copy code')
       }
     },
     computed: {

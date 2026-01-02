@@ -33,8 +33,8 @@
             <Poptip v-if="refreshVisible" trigger="hover" placement="right-start">
               <Icon type="ios-help-outline"></Icon>
               <div slot="content">
-                <p>如果您发现以下问题ID不存在，请点击此按钮。</p>
-                <Button type="info" @click="freshProblemDisplayID">重新生成</Button>
+                <p>If you find the following problem id does not exist,<br> try to click the button.</p>
+                <Button type="info" @click="freshProblemDisplayID">regenerate</Button>
               </div>
             </Poptip>
           </div>
@@ -108,7 +108,7 @@
       },
       freshProblemDisplayID () {
         api.freshDisplayID().then(res => {
-          this.$success('更新成功')
+          this.$success('Update successfully')
           this.init()
         })
       }

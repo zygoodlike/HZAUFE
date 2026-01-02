@@ -21,7 +21,7 @@ const pie = {
   },
   series: [
     {
-      name: '概况',
+      name: 'Summary',
       type: 'pie',
       radius: '80%',
       center: ['50%', '55%'],
@@ -60,7 +60,7 @@ const largePie = {
   },
   series: [
     {
-      name: '详细',
+      name: 'Detail',
       type: 'pie',
       radius: ['45%', '70%'],
       center: ['50%', '55%'],

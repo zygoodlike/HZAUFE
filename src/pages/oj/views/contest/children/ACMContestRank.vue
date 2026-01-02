@@ -97,7 +97,7 @@
             }
           },
           {
-            title: '通过数 / ' + this.$i18n.t('m.Total'),
+            title: 'AC / ' + this.$i18n.t('m.Total'),
             align: 'center',
             width: 100,
             render: (h, params) => {

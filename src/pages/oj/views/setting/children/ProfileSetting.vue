@@ -9,7 +9,7 @@
               :before-upload="handleSelectFile">
         <div style="padding: 30px 0">
           <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
-          <p>拖拽到此处，或点击手动选择</p>
+          <p>Drop here, or click to select manually</p>
         </div>
       </Upload>
     </template>
@@ -52,13 +52,13 @@
       </div>
     </template>
     <Modal v-model="uploadModalVisible"
-           title="上传头像">
+           title="Upload the avatar">
       <div class="upload-modal">
-        <p class="notice">您的头像将设置为：</p>
+        <p class="notice">Your avatar will be set to:</p>
         <img :src="uploadImgSrc"/>
       </div>
       <div slot="footer">
-        <Button @click="uploadAvatar" :loading="loadingUploadBtn">上传</Button>
+        <Button @click="uploadAvatar" :loading="loadingUploadBtn">upload</Button>
       </div>
     </Modal>
 
@@ -66,33 +66,33 @@
     <Form ref="formProfile" :model="formProfile">
       <Row type="flex" :gutter="30" justify="space-around">
         <Col :span="11">
-          <FormItem label="真实姓名">
+          <FormItem label="Real Name">
             <Input v-model="formProfile.real_name"/>
           </FormItem>
-          <Form-item label="学校">
+          <Form-item label="School">
             <Input v-model="formProfile.school"/>
           </Form-item>
-          <Form-item label="专业">
+          <Form-item label="Major">
             <Input v-model="formProfile.major"/>
           </Form-item>
-          <FormItem label="语言">
+          <FormItem label="Language">
             <Select v-model="formProfile.language">
               <Option v-for="lang in languages" :key="lang.value" :value="lang.value">{{lang.label}}</Option>
             </Select>
           </FormItem>
           <Form-item>
-            <Button type="primary" @click="updateProfile" :loading="loadingSaveBtn">保存全部</Button>
+            <Button type="primary" @click="updateProfile" :loading="loadingSaveBtn">Save All</Button>
           </Form-item>
         </Col>
 
         <Col :span="11">
-          <Form-item label="个性签名">
+          <Form-item label="Mood">
             <Input v-model="formProfile.mood"/>
           </Form-item>
-          <Form-item label="博客">
+          <Form-item label="Blog">
             <Input v-model="formProfile.blog"/>
           </Form-item>
-          <Form-item label="GitHub">
+          <Form-item label="Github">
             <Input v-model="formProfile.github"/>
           </Form-item>
         </Col>
@@ -148,8 +148,8 @@
       checkFileType (file) {
         if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(file.name)) {
           this.$Notice.warning({
-            title: '文件类型不支持',
-            desc: '文件 ' + file.name + ' 格式不正确，请仅选择图片文件。'
+            title: 'File type not support',
+            desc: 'The format of ' + file.name + ' is incorrect ，please choose image only.'
           })
           return false
         }
@@ -159,8 +159,8 @@
         // max size is 2MB
         if (file.size > 2 * 1024 * 1024) {
           this.$Notice.warning({
-            title: '超出文件大小限制',
-            desc: '文件 ' + file.name + ' 太大，您最多可以上传2MB的图片。'
+            title: 'Exceed max size limit',
+            desc: 'File ' + file.name + ' is too big, you can upload a image up to 2MB in size'
           })
           return false
         }
@@ -190,7 +190,7 @@
       },
       reselect () {
         this.$Modal.confirm({
-          content: '确定要放弃更改吗？',
+          content: 'Are you sure to disgard the changes?',
           onOk: () => {
             this.avatarOption.imgSrc = ''
           }
@@ -215,7 +215,7 @@
             headers: {'content-type': 'multipart/form-data'}
           }).then(res => {
             this.loadingUploadBtn = false
-            this.$success('头像设置成功')
+            this.$success('Successfully set new avatar')
             this.uploadModalVisible = false
             this.avatarOption.imgSrc = ''
             this.$store.dispatch('getProfile')
@@ -228,7 +228,7 @@
         this.loadingSaveBtn = true
         let updateData = utils.filterEmptyValue(Object.assign({}, this.formProfile))
         api.updateProfile(updateData).then(res => {
-          this.$success('保存成功')
+          this.$success('Success')
           this.$store.commit(types.CHANGE_PROFILE, {profile: res.data.data})
           this.loadingSaveBtn = false
         }, _ => {

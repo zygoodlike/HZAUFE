@@ -99,9 +99,9 @@
           toolbox: {
             show: true,
             feature: {
-              dataView: {show: true, readOnly: true, title: this.$i18n.t('m.Data_View')},
-              magicType: {show: true, type: ['line', 'bar', 'stack'], title: {line: this.$i18n.t('m.Line'), bar: this.$i18n.t('m.Bar'), stack: this.$i18n.t('m.Stack')}},
-              saveAsImage: {show: true, title: this.$i18n.t('m.Save_As_Image')}
+              dataView: {show: true, readOnly: true},
+              magicType: {show: true, type: ['line', 'bar', 'stack']},
+              saveAsImage: {show: true}
             },
             right: '10%'
           },
@@ -133,7 +133,7 @@
               data: [0],
               markPoint: {
                 data: [
-                  {type: 'max', name: this.$i18n.t('m.Max')}
+                  {type: 'max', name: 'max'}
                 ]
               }
             },
@@ -143,7 +143,7 @@
               data: [0],
               markPoint: {
                 data: [
-                  {type: 'max', name: this.$i18n.t('m.Max')}
+                  {type: 'max', name: 'max'}
                 ]
               }
             }

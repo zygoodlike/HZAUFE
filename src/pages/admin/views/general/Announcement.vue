@@ -130,7 +130,7 @@
           content: ''
         },
         // 对话框标题
-        announcementDialogTitle: '编辑公告',
+        announcementDialogTitle: 'Edit Announcement',
         // 是否显示loading
         loading: true,
         // 当前页码

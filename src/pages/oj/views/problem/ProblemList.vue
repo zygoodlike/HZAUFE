@@ -28,7 +28,7 @@
             <Input v-model="query.keyword"
                    @on-enter="filterByKeyword"
                    @on-click="filterByKeyword"
-                   placeholder="关键词"
+                   placeholder="keyword"
                    icon="ios-search-strong"/>
           </li>
           <li>

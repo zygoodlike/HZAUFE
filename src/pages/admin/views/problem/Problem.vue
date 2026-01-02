@@ -114,9 +114,9 @@
         </el-row>
         <div>
           <el-form-item v-for="(sample, index) in problem.samples" :key="'sample'+index">
-            <Accordion :title="'样例' + (index + 1)">
+            <Accordion :title="'Sample' + (index + 1)">
               <el-button type="warning" size="small" icon="el-icon-delete" slot="header" @click="deleteSample(index)">
-                删除
+                Delete
               </el-button>
               <el-row :gutter="20">
                 <el-col :span="12">
@@ -197,22 +197,22 @@
           <el-col :span="6">
             <el-form-item :label="$t('m.TestCase')" :error="error.testcase">
               <el-upload
-                  action="/api/admin/test_case"
-                  name="file"
-                  :data="{spj: problem.spj}"
-                  :show-file-list="true"
-                  :on-success="uploadSucceeded"
-                  :on-error="uploadFailed">
-                  <el-button size="small" type="primary" icon="el-icon-fa-upload">选择文件</el-button>
-                </el-upload>
+                action="/api/admin/test_case"
+                name="file"
+                :data="{spj: problem.spj}"
+                :show-file-list="true"
+                :on-success="uploadSucceeded"
+                :on-error="uploadFailed">
+                <el-button size="small" type="primary" icon="el-icon-fa-upload">Choose File</el-button>
+              </el-upload>
             </el-form-item>
           </el-col>
 
           <el-col :span="6">
             <el-form-item :label="$t('m.IOMode')">
               <el-radio-group v-model="problem.io_mode.io_mode">
-                <el-radio label="Standard IO">标准输入输出</el-radio>
-                <el-radio label="File IO">文件输入输出</el-radio>
+                <el-radio label="Standard IO">Standard IO</el-radio>
+                <el-radio label="File IO">File IO</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -259,7 +259,7 @@
         <el-form-item :label="$t('m.Source')">
           <el-input :placeholder="$t('m.Source')" v-model="problem.source"></el-input>
         </el-form-item>
-        <save @click.native="submit()">保存</save>
+        <save @click.native="submit()">Save</save>
       </el-form>
     </Panel>
   </div>
@@ -281,10 +281,10 @@
     data () {
       return {
         rules: {
-          _id: {required: true, message: '显示ID不能为空', trigger: 'blur'},
-          title: {required: true, message: '标题不能为空', trigger: 'blur'},
-          input_description: {required: true, message: '输入描述不能为空', trigger: 'blur'},
-          output_description: {required: true, message: '输出描述不能为空', trigger: 'blur'}
+          _id: {required: true, message: 'Display ID is required', trigger: 'blur'},
+          title: {required: true, message: 'Title is required', trigger: 'blur'},
+          input_description: {required: true, message: 'Input Description is required', trigger: 'blur'},
+          output_description: {required: true, message: 'Output Description is required', trigger: 'blur'}
         },
         loadingCompile: false,
         mode: '',
@@ -418,9 +418,9 @@
     methods: {
       switchSpj () {
         if (this.testCaseUploaded) {
-          this.$confirm('如果您更改题目评判方式，需要重新上传测试用例', '警告', {
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
+          this.$confirm('If you change problem judge method, you need to re-upload test cases', 'Warning', {
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel',
             type: 'warning'
           }).then(() => {
             this.problem.spj = !this.problem.spj

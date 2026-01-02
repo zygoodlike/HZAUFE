@@ -16,7 +16,7 @@
               </Input>
             </div>
             <div class="oj-captcha-img">
-              <Tooltip content="点击刷新" placement="top">
+              <Tooltip content="Click to refresh" placement="top">
                 <img :src="captchaSrc" @click="getCaptchaSrc"/>
               </Tooltip>
             </div>
@@ -31,8 +31,8 @@
     </template>
     <template v-else>
       <Alert type="success" show-icon>
-        {{$t('m.Success')}}
-        <span slot="desc"> {{$t('m.Password_reset_mail_sent')}}</span>
+        {{$t('Success')}}
+        <span slot="desc"> {{$t('Password_reset_mail_sent')}}</span>
       </Alert>
     </template>
   </Panel>

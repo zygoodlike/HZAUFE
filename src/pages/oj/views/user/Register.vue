@@ -29,7 +29,7 @@
             </Input>
           </div>
           <div class="oj-captcha-img">
-            <Tooltip content="点击刷新" placement="top">
+            <Tooltip content="Click to refresh" placement="top">
               <img :src="captchaSrc" @click="getCaptchaSrc"/>
             </Tooltip>
           </div>

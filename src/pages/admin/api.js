@@ -324,17 +324,17 @@ function ajax (url, method, options) {
         Vue.prototype.$error(res.data.data)
         reject(res)
         // // 若后端返回为登录，则为session失效，应退出当前登录用户
-        if (res.data.data.startsWith('Please login') || res.data.data.startsWith('请登录')) {
+        if (res.data.data.startsWith('Please login')) {
           router.push({name: 'login'})
         }
       } else {
         resolve(res)
         if (method !== 'get') {
-          Vue.prototype.$success('操作成功')
+          Vue.prototype.$success('Succeeded')
         }
       }
     }, res => {
-      // API请求异常，一般为服务器错误 或 网络错误
+      // API请求异常，一般为Server error 或 network error
       reject(res)
       Vue.prototype.$error(res.data.data)
     })

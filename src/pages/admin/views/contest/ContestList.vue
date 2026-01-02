@@ -1,25 +1,25 @@
 <template>
   <div class="view">
-    <Panel title="竞赛列表">
+    <Panel title="Contest List">
       <div slot="header">
         <el-input
           v-model="keyword"
           prefix-icon="el-icon-search"
-          placeholder="关键词">
+          placeholder="Keywords">
         </el-input>
       </div>
       <el-table
         v-loading="loading"
-        element-loading-text="加载中"
+        element-loading-text="loading"
         ref="table"
         :data="contestList"
         style="width: 100%">
         <el-table-column type="expand">
           <template slot-scope="props">
-            <p>开始时间: {{props.row.start_time | localtime }}</p>
-            <p>结束时间: {{props.row.end_time | localtime }}</p>
-            <p>创建时间: {{props.row.create_time | localtime}}</p>
-            <p>创建者: {{props.row.created_by.username}}</p>
+            <p>Start Time: {{props.row.start_time | localtime }}</p>
+            <p>End Time: {{props.row.end_time | localtime }}</p>
+            <p>Create Time: {{props.row.create_time | localtime}}</p>
+            <p>Creator: {{props.row.created_by.username}}</p>
           </template>
         </el-table-column>
         <el-table-column
@@ -29,17 +29,17 @@
         </el-table-column>
         <el-table-column
           prop="title"
-          label="标题">
+          label="Title">
         </el-table-column>
         <el-table-column
-          label="规则类型"
+          label="Rule Type"
           width="130">
           <template slot-scope="scope">
             <el-tag type="gray">{{scope.row.rule_type}}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
-          label="竞赛类型"
+          label="Contest Type"
           width="180">
           <template slot-scope="scope">
             <el-tag :type="scope.row.contest_type === 'Public' ? 'success' : 'primary'">
@@ -48,7 +48,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="状态"
+          label="Status"
           width="130">
           <template slot-scope="scope">
             <el-tag
@@ -59,7 +59,7 @@
         </el-table-column>
         <el-table-column
           width="100"
-          label="可见性">
+          label="Visible">
           <template slot-scope="scope">
             <el-switch v-model="scope.row.visible"
                        active-text=""
@@ -71,13 +71,13 @@
         <el-table-column
           fixed="right"
           width="250"
-          label="操作">
+          label="Operation">
           <div slot-scope="scope">
-            <icon-btn name="编辑" icon="edit" @click.native="goEdit(scope.row.id)"></icon-btn>
-            <icon-btn name="题目" icon="list-ol" @click.native="goContestProblemList(scope.row.id)"></icon-btn>
-            <icon-btn name="公告" icon="info-circle"
+            <icon-btn name="Edit" icon="edit" @click.native="goEdit(scope.row.id)"></icon-btn>
+            <icon-btn name="Problem" icon="list-ol" @click.native="goContestProblemList(scope.row.id)"></icon-btn>
+            <icon-btn name="Announcement" icon="info-circle"
                       @click.native="goContestAnnouncement(scope.row.id)"></icon-btn>
-            <icon-btn icon="download" name="下载通过的提交"
+            <icon-btn icon="download" name="Download Accepted Submissions"
                       @click.native="openDownloadOptions(scope.row.id)"></icon-btn>
           </div>
         </el-table-column>
@@ -92,10 +92,10 @@
         </el-pagination>
       </div>
     </Panel>
-    <el-dialog title="下载竞赛提交"
+    <el-dialog title="Download Contest Submissions"
                width="30%"
                :visible.sync="downloadDialogVisible">
-      <el-switch v-model="excludeAdmin" active-text="排除管理员提交"></el-switch>
+      <el-switch v-model="excludeAdmin" active-text="Exclude admin submissions"></el-switch>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="downloadSubmissions">确 定</el-button>
       </span>

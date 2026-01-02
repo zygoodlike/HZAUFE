@@ -1,70 +1,70 @@
 export const JUDGE_STATUS = {
   '-2': {
-    name: '编译错误',
+    name: 'Compile Error',
     short: 'CE',
     color: 'yellow',
     type: 'warning'
   },
   '-1': {
-    name: '答案错误',
+    name: 'Wrong Answer',
     short: 'WA',
     color: 'red',
     type: 'error'
   },
   '0': {
-    name: '通过',
+    name: 'Accepted',
     short: 'AC',
     color: 'green',
     type: 'success'
   },
   '1': {
-    name: '时间超限',
+    name: 'Time Limit Exceeded',
     short: 'TLE',
     color: 'red',
     type: 'error'
   },
   '2': {
-    name: '时间超限',
+    name: 'Time Limit Exceeded',
     short: 'TLE',
     color: 'red',
     type: 'error'
   },
   '3': {
-    name: '内存超限',
+    name: 'Memory Limit Exceeded',
     short: 'MLE',
     color: 'red',
     type: 'error'
   },
   '4': {
-    name: '运行时错误',
+    name: 'Runtime Error',
     short: 'RE',
     color: 'red',
     type: 'error'
   },
   '5': {
-    name: '系统错误',
+    name: 'System Error',
     short: 'SE',
     color: 'red',
     type: 'error'
   },
   '6': {
-    name: '等待评测',
+    name: 'Pending',
     color: 'yellow',
     type: 'warning'
   },
   '7': {
-    name: '评测中',
+    name: 'Judging',
     color: 'blue',
     type: 'info'
   },
   '8': {
-    name: '部分通过',
+    name: 'Partial Accepted',
     short: 'PAC',
     color: 'blue',
     type: 'info'
   },
   '9': {
-    name: '提交中',
+    name: 'Submitting',
     color: 'yellow',
     type: 'warning'
   }
@@ -78,15 +78,15 @@ export const CONTEST_STATUS = {
 
 export const CONTEST_STATUS_REVERSE = {
   '1': {
-    name: '未开始',
+    name: 'Not Started',
     color: 'yellow'
   },
   '0': {
-    name: '进行中',
+    name: 'Underway',
     color: 'green'
   },
   '-1': {
-    name: '已结束',
+    name: 'Ended',
     color: 'red'
   }
 }
@@ -97,20 +97,20 @@ export const RULE_TYPE = {
 }
 
 export const CONTEST_TYPE = {
-  PUBLIC: '公开',
-  PRIVATE: '密码保护'
+  PUBLIC: 'Public',
+  PRIVATE: 'Password Protected'
 }
 
 export const USER_TYPE = {
-  REGULAR_USER: '普通用户',
-  ADMIN: '管理员',
-  SUPER_ADMIN: '超级管理员'
+  REGULAR_USER: 'Regular User',
+  ADMIN: 'Admin',
+  SUPER_ADMIN: 'Super Admin'
 }
 
 export const PROBLEM_PERMISSION = {
-  NONE: '无权限',
-  OWN: '自己的',
-  ALL: '全部'
+  NONE: 'None',
+  OWN: 'Own',
+  ALL: 'All'
 }
 
 export const STORAGE_KEY = {

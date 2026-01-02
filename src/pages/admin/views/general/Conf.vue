@@ -5,22 +5,22 @@
         <el-row :gutter="20">
           <el-col :span="12">
             <el-form-item :label="$t('m.Server')" required>
-              <el-input v-model="smtp.server" placeholder="SMTP服务器地址"></el-input>
+              <el-input v-model="smtp.server" placeholder="SMTP Server Address"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('m.Port')" required>
-              <el-input type="number" v-model="smtp.port" placeholder="SMTP服务器端口"></el-input>
+              <el-input type="number" v-model="smtp.port" placeholder="SMTP Server Port"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('m.Email')" required>
-              <el-input v-model="smtp.email" placeholder="用于发送邮件的账户"></el-input>
+              <el-input v-model="smtp.email" placeholder="Account Used To Send Email"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('m.Password')" label-width="90px" required>
-              <el-input v-model="smtp.password" type="password" placeholder="SMTP服务器密码"></el-input>
+              <el-input v-model="smtp.password" type="password" placeholder="SMTP Server Password"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -32,9 +32,9 @@
           </el-col>
         </el-row>
       </el-form>
-      <el-button type="primary" @click="saveSMTPConfig">保存</el-button>
+      <el-button type="primary" @click="saveSMTPConfig">Save</el-button>
       <el-button type="warning" @click="testSMTPConfig"
-                 v-if="saved" :loading="loadingBtnTest">发送测试邮件</el-button>
+                 v-if="saved" :loading="loadingBtnTest">Send Test Email</el-button>
     </Panel>
 
     <Panel :title="$t('m.Website_Config')">
@@ -42,23 +42,23 @@
         <el-row :gutter="20">
           <el-col :span="8">
             <el-form-item :label="$t('m.Base_Url')" required>
-              <el-input v-model="websiteConfig.website_base_url" placeholder="网站基础URL"></el-input>
+              <el-input v-model="websiteConfig.website_base_url" placeholder="Website Base Url"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item :label="$t('m.Name')" required>
-              <el-input v-model="websiteConfig.website_name" placeholder="网站名称"></el-input>
+              <el-input v-model="websiteConfig.website_name" placeholder="Website Name"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item :label="$t('m.Shortcut')" required>
-              <el-input v-model="websiteConfig.website_name_shortcut" placeholder="网站名称缩写"></el-input>
+              <el-input v-model="websiteConfig.website_name_shortcut" placeholder="Website Name Shortcut"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-form-item :label="$t('m.Footer')" required>
               <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" v-model="websiteConfig.website_footer"
-                        placeholder="网站页脚HTML"></el-input>
+                        placeholder="Website Footer HTML"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -114,7 +114,7 @@
           this.smtp = res.data.data
         } else {
           this.init = true
-          this.$warning('请先设置SMTP配置')
+          this.$warning('Please setup SMTP config at first')
         }
       })
       api.getWebsiteConfig().then(res => {
@@ -137,9 +137,9 @@
         }
       },
       testSMTPConfig () {
-        this.$prompt('请输入您的邮箱', '', {
+        this.$prompt('Please input your email', '', {
           inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-          inputErrorMessage: '邮箱格式错误'
+          inputErrorMessage: 'Error email format'
         }).then(({value}) => {
           this.loadingBtnTest = true
           api.testSMTPConfig(value).then(() => {
