@@ -17,22 +17,42 @@
           </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="24">
+          <el-col :span="12">
             <el-form-item prop="description" :label="$t('m.Description')" required>
               <Simditor v-model="problem.description"></Simditor>
             </el-form-item>
           </el-col>
+          <el-col :span="12">
+            <div class="preview-panel">
+              <div class="preview-title">{{$t('m.Preview')}}</div>
+              <div class="preview-content markdown-body" v-html="renderedDescription" v-katex></div>
+            </div>
+          </el-col>
         </el-row>
         <el-row :gutter="20">
-          <el-col :span="24">
+          <el-col :span="12">
             <el-form-item prop="input_description" :label="$t('m.Input_Description')" required>
               <Simditor v-model="problem.input_description"></Simditor>
             </el-form-item>
           </el-col>
-          <el-col :span="24">
+          <el-col :span="12">
+            <div class="preview-panel">
+              <div class="preview-title">{{$t('m.Preview')}}</div>
+              <div class="preview-content markdown-body" v-html="renderedInputDescription" v-katex></div>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="12">
             <el-form-item prop="output_description" :label="$t('m.Output_Description')" required>
               <Simditor v-model="problem.output_description"></Simditor>
             </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <div class="preview-panel">
+              <div class="preview-title">{{$t('m.Preview')}}</div>
+              <div class="preview-content markdown-body" v-html="renderedOutputDescription" v-katex></div>
+            </div>
           </el-col>
         </el-row>
         <el-row :gutter="20">
@@ -147,9 +167,19 @@
           <button type="button" class="add-samples" @click="addSample()"><i class="el-icon-plus"></i>{{$t('m.Add_Sample')}}
           </button>
         </div>
-        <el-form-item style="margin-top: 20px" :label="$t('m.Hint')">
-          <Simditor v-model="problem.hint" placeholder=""></Simditor>
-        </el-form-item>
+        <el-row :gutter="20">
+          <el-col :span="12">
+            <el-form-item style="margin-top: 20px" :label="$t('m.Hint')">
+              <Simditor v-model="problem.hint" placeholder=""></Simditor>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <div class="preview-panel">
+              <div class="preview-title">{{$t('m.Preview')}}</div>
+              <div class="preview-content markdown-body" v-html="renderedHint" v-katex></div>
+            </div>
+          </el-col>
+        </el-row>
         <el-form-item :label="$t('m.Code_Template')">
           <el-row>
             <el-col :span="24" v-for="(v, k) in template" :key="'template'+k">
@@ -270,6 +300,7 @@
   import Accordion from '../../components/Accordion'
   import CodeMirror from '../../components/CodeMirror'
   import api from '../../api'
+  import { marked } from 'marked'
 
   export default {
     name: 'Problem',
@@ -312,6 +343,24 @@
           languages: '',
           testCase: ''
         }
+      }
+    },
+    computed: {
+      renderedDescription () {
+        if (!this.problem.description) return ''
+        return marked(this.problem.description, { escape: false })
+      },
+      renderedInputDescription () {
+        if (!this.problem.input_description) return ''
+        return marked(this.problem.input_description, { escape: false })
+      },
+      renderedOutputDescription () {
+        if (!this.problem.output_description) return ''
+        return marked(this.problem.output_description, { escape: false })
+      },
+      renderedHint () {
+        if (!this.problem.hint) return ''
+        return marked(this.problem.hint, { escape: false })
       }
     },
     mounted () {
@@ -633,8 +682,30 @@
       }
     }
     .add-sample-btn {
-      margin-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .preview-panel {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    height: 100%;
+    min-height: 400px;
+    margin-top: 22px;
+    
+    .preview-title {
+      padding: 10px 15px;
+      background-color: #f5f7fa;
+      border-bottom: 1px solid #eee;
+      font-weight: 500;
+      color: #606266;
     }
+    
+    .preview-content {
+      padding: 15px;
+      height: calc(100% - 46px);
+      overflow-y: auto;
+    }
+  }
 
   }
 </style>

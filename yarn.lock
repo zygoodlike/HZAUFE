@@ -4792,10 +4792,20 @@
   dependencies:
     "object-visit" "^1.0.0"
 
-"marked@^0.3.19", "marked@^0.3.5":
+"marked@^0.3.19":
   "integrity" "sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg=="
   "resolved" "https://registry.npmmirror.com/marked/-/marked-0.3.19.tgz"
   "version" "0.3.19"
+
+"marked@^0.3.5":
+  "integrity" "sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg=="
+  "resolved" "https://registry.npmmirror.com/marked/-/marked-0.3.19.tgz"
+  "version" "0.3.19"
+
+"marked@^4.3.0":
+  "integrity" "sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A=="
+  "resolved" "https://registry.npmmirror.com/marked/-/marked-4.3.0.tgz"
+  "version" "4.3.0"
 
 "math-expression-evaluator@^1.2.14":
   "integrity" "sha512-4vRUvPyxdO8cWULGTh9dZWL2tZK6LDBvj+OGHBER7poH9Qdt7kXEoj20wiz4lQUbUXQZFjPbe5mVDo9nutizCw=="
@@ -7090,8 +7100,7 @@
     "simple-module" "~2.0.5"
 
 "simple-hotkeys@github:itargaryen/simple-hotkeys":
-  "integrity" "sha512-j/XFMl0rwTUHPx8EuUyfK7pMmnaELF1sJM3hsdxCHS7YoEZY9FFTHgJqF7/dj2/RgE/05BWJVI/o7/JyGJ0uJg=="
-  "resolved" "https://codeload.github.com/itargaryen/simple-hotkeys/tar.gz/8a6b2cf19d06100ac86d7ce4d442df08c561b7e9"
+  "resolved" "git+ssh://git@github.com/itargaryen/simple-hotkeys.git#8a6b2cf19d06100ac86d7ce4d442df08c561b7e9"
   "version" "0.2.1"
 
 "simple-module@^2.0.6", "simple-module@~2.0.5", "simple-module@~2.0.6":
@@ -7102,8 +7111,7 @@
     "jquery" "2.x"
 
 "simple-module@github:itargaryen/simple-module#v2.1.0":
-  "integrity" "sha512-EYyStshAamO+SBlPkMGYhSgGxPualnm6ECUby+laK2nmtt5jsstYKk9wL8UNsOPOyZ5jEo8gURJibb1oiCKTuQ=="
-  "resolved" "https://codeload.github.com/itargaryen/simple-module/tar.gz/ea2688c579170eca533cd0bd8ba7f83c8d241a1c"
+  "resolved" "git+ssh://git@github.com/itargaryen/simple-module.git#ea2688c579170eca533cd0bd8ba7f83c8d241a1c"
   "version" "2.1.0"
   dependencies:
     "jquery" "=3.1.1"
@@ -7124,8 +7132,7 @@
     "simple-module" "~2.0.5"
 
 "simple-uploader@github:itargaryen/simple-uploader#v2.1.0":
-  "integrity" "sha512-e+ZE0Xcl2hvgv4wcb/LfuCweFnDVjVEppqOiTpK86KCtYTrf7iCcz6Jy+qTYZJO0EWa/OY2X6rclU1MdYSgPGw=="
-  "resolved" "https://codeload.github.com/itargaryen/simple-uploader/tar.gz/79d795ca1ce0b163c0e335fddad5bf9393004780"
+  "resolved" "git+ssh://git@github.com/itargaryen/simple-uploader.git#79d795ca1ce0b163c0e335fddad5bf9393004780"
   "version" "2.1.0"
   dependencies:
     "jquery" "=3.1.1"
