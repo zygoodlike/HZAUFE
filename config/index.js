@@ -7,9 +7,9 @@ const path = require('path')
 // 直接硬编码后端地址
 const commonProxy = {
   onProxyReq: (proxyReq, req, res) => {
-    proxyReq.setHeader('Referer', 'http://nacos:80')  // 直接写死
+    proxyReq.setHeader('Referer', 'http://47.122.114.240:80')  // 直接写死
   },
-  target: 'http://nacos:80',  // 直接写死后端地址
+  target: 'http://47.122.114.240:80',  // 直接写死后端地址
   changeOrigin: true
 }
 
