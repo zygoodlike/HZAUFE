@@ -193,7 +193,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item :label="$t('m.User_New_Password')">
-              <el-input v-model="user.password"></el-input>
+              <el-input v-model="user.password" type="password"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -274,7 +274,19 @@
         // 是否显示用户对话框
         showUserDialog: false,
         // 当前用户model
-        user: {},
+        user: {
+          id: '',
+          username: '',
+          real_name: '',
+          email: '',
+          password: '',
+          admin_type: 'Regular User',
+          problem_permission: 'None',
+          two_factor_auth: false,
+          real_tfa: false,
+          open_api: false,
+          is_disabled: false
+        },
         loadingTable: false,
         loadingGenerate: false,
         // 当前页码
@@ -312,7 +324,8 @@
       openUserDialog (id) {
         this.showUserDialog = true
         api.getUser(id).then(res => {
-          this.user = res.data.data
+          // 合并API响应到现有的user对象，保持响应式
+          Object.assign(this.user, res.data.data)
           this.user.password = ''
           this.user.real_tfa = this.user.two_factor_auth
         })
